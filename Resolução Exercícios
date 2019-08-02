@@ -1,0 +1,147 @@
+/*
+EXERCÍCIOS 
+
+Construa um programa que apresenta o seguinte menu:
+
+opção A = maior número lido
+opção B = figura
+opção C = média ímpares
+opção X = sair
+Digite a sua opção:
+
+O menu deve ser executado até que o usuário informe a 'X' para sair, a execução das opções devem ser controladas com o uso do comando switch/case e quando o usuário informar uma opção diferente das propostas no menu, o programa deve apresentar mensagem “opção inválida”.  O programa deve aceitar as opções em letra maiúscula e/ou minusculo. Para cada opção do menu deve ser implementado um bloco de comandos(case) conforme abaixo:
+
+Opção A: Quando o usuário escolher a opção 'A' o programa deve ler um valor N e em seguida ler N números inteiros. Mostrar o maior número lido.
+
+Opção B: Quando o usuário escolher a opção 'B' o programa deve ler o lado de 10 quadrados e calcula a sua área. Mostre para cada um deles: 
+
+a.  “quadrado grande” quando a área for maior que 16
+b.  “quadrado pequeno” quando a área for menor que 16
+c.  “quadrado perfeito” quando a área for igual a 16
+
+Opção C: Quando o usuário escolher a opção 'C' o programa deve ler 10 números inteiros, calcular e mostrar a média aritmética dos números impares digitados.
+
+
+ */
+package revisaofinal;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author lais
+ */
+public class exercicio7 {
+    public static void main(String[] args) {
+       int i;
+      int quantidade, valor, maior=0; //variaveis da opção a
+      int lado, area; //variaveis da opção b
+      int num, soma=0, cont=0; //variaveis para opção c
+      float media; //variaveis para opção c
+                
+      String var; //string para caso a
+      String op; //string para escolher a operação
+      
+      do{
+         op = JOptionPane.showInputDialog(null, "opção A = maior número lido\n" + //menu de opções 
+                                                            "opção B = figura\n" +
+                                                            "opção C = média ímpares\n" +
+                                                            "opção X = sair\n" +
+                                                            "Digite a sua opção:");
+         
+     
+       
+        switch(op.toLowerCase()){
+            case "a":  // o programa deve ler um valor N e em seguida ler N números inteiros. Mostrar o maior número lido.
+                var = JOptionPane.showInputDialog("Digite um valor n");
+                quantidade = Integer.parseInt(var);
+                
+                for(i=1; i<=quantidade; i++){
+                    var = JOptionPane.showInputDialog("Digite 0 "+i+"º"+" valor");
+                    valor = Integer.parseInt(var);
+                    
+                    if(valor > maior){ //condição que compara valor é maior que zero
+				maior = valor; //quando o valor digitado pelo usuario for maior que zero será armazzenado na variavel maior
+			}
+                    
+                }
+                
+                JOptionPane.showMessageDialog(null, maior); // mensagem que mostra o valor da variavel maior
+                                                            //fica fora do laço for pois só ira ser mostrado uma vez
+                
+                break; //força a saida do case
+                
+                
+                
+                
+            case "b":  
+                /* Quando o usuário escolher a opção 'B' o programa deve ler o lado de 10 quadrados e calcula a sua área.
+                    Mostre para cada um deles: 
+
+                a.  “quadrado grande” quando a área for maior que 16
+                b.  “quadrado pequeno” quando a área for menor que 16
+                c.  “quadrado perfeito” quando a área for igual a 16*/   
+
+                
+                for(i=1; i<=10; i++){
+                    var = JOptionPane.showInputDialog(null, "Digite o lado do quadrado"); 
+                    lado = Integer.parseInt(var);
+                    
+                    area=lado*lado;
+                    
+                    if(area>16){
+                        JOptionPane.showMessageDialog(null, area+" quadrado grande");
+                    }else{
+                        if(area<16){
+                            JOptionPane.showMessageDialog(null, area+"quadrado pequeno");
+                        }else{
+                            JOptionPane.showMessageDialog(null, area+"quadrado perfeito");
+                        }
+                    }
+                }
+               
+                break;
+                //---------------
+                
+            case "c":    
+                /*Quando o usuário escolher a opção 'C' 
+                o programa deve ler 10 números inteiros, calcular e mostrar a média aritmética dos números impares digitados. */
+              
+                  
+                
+                 for ( i = 1; i <= 10; i++) {
+                    var=JOptionPane.showInputDialog("Digite um numero");
+                    num=Integer.parseInt(var);
+            
+                    if(num%2==1){
+                           cont++;
+                            soma=soma+num;
+                    }
+                }
+        
+                if(soma>0){
+                     media=soma/cont;
+                    JOptionPane.showMessageDialog(null, media);
+                }else{
+                      JOptionPane.showMessageDialog(null, "Erro divisão por zero");
+                }
+             
+                break;
+                //--------------
+            case "x":
+                //sair
+                JOptionPane.showMessageDialog(null, "SAIR"); //sair do menu quando for digitado x
+                break;   
+                //----------------
+            default:    // quando nenhum dos casos acima for digitado pelo usuario dara opção invalida
+                JOptionPane.showMessageDialog(null, "Este não é um valor valido"); //Mensagem de opção invalida
+                
+                break;
+           
+        }
+           
+      }while(!("X").equals(op.toUpperCase())); //condição esse programa ira rodar até que seja digitado x toUppercase converte tudo pra caixa alta
+       
+        
+    }
+}
